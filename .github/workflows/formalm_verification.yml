@@ -53,6 +53,8 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-
       - name: Setup OPENAI token
         run: echo "OPENAI_TOKEN=${{ secrets.OPENAI_TOKEN }} " >> $GITHUB_ENV
+      - name: Setup OPENAI_REQUEST_TIMEOUT
+        run: echo "OPENAI_REQUEST_TIMEOUT=60" >> $GITHUB_ENV
       - name: Adding Poetry to path
         run: echo "/root/.local/share/pypoetry/venv/bin" >> $GITHUB_PATH
       - name: Testing
