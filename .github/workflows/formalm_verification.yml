@@ -14,7 +14,7 @@ jobs:
   check1:
     name: Check on ${{ matrix.os.runner }}
     runs-on: ${{ matrix.os }}
-    container: ghcr.io/xebia-functional/formalm:main
+    container: ghcr.io/xebia-functional/formalm:cu-865cne4a7-ruff-to-review-comment
     permissions:
       contents: read  #  to fetch code (actions/checkout)
       packages: read  #  to fetch packages (docker)
@@ -76,3 +76,9 @@ jobs:
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           #category: my-analysis-tool
+      - name: Generate review comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./.github/workflows/reports-to-comments.js')
+            script({github, context})
