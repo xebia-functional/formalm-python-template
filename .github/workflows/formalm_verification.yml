@@ -18,6 +18,8 @@ jobs:
     permissions:
       contents: read  #  to fetch code (actions/checkout)
       packages: read  #  to fetch packages (docker)
+      discussions: write
+      pull-requests: write
     defaults:
       run:
         shell: ${{ matrix.shell }}
