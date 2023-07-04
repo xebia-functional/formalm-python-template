@@ -80,5 +80,5 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const script = require('./.github/workflows/reports-to-comments.js')
+            const script = require('./.github/workflows/scripts/reports-to-comments.js')
             script({github, context})
