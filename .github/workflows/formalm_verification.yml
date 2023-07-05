@@ -84,3 +84,9 @@ jobs:
           script: |
             const script = require('./.github/workflows/scripts/reports-to-comments.js')
             script({github, context})
+      - name: Create comment to GitHub Code Scanning results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./.github/workflows/scripts/comment-link-security.js');
+            script({github, context});
