@@ -100,5 +100,5 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const script = require('./.github/workflows/scripts/comment-link-security.js');
+            const script = require('./.github/workflows/scripts/codeql-comment.js');
             script({github, context});
