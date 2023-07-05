@@ -14,10 +14,12 @@ jobs:
   check1:
     name: Check on ${{ matrix.os.runner }}
     runs-on: ${{ matrix.os }}
-    container: ghcr.io/xebia-functional/formalm:main
+    container: ghcr.io/xebia-functional/formalm:cu-865cne4a7-ruff-to-review-comment
     permissions:
       contents: read  #  to fetch code (actions/checkout)
       packages: read  #  to fetch packages (docker)
+      discussions: write
+      pull-requests: write
     defaults:
       run:
         shell: ${{ matrix.shell }}
@@ -76,3 +78,29 @@ jobs:
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           #category: my-analysis-tool
+      - name: List files
+        id: listFiles
+        run: |
+          jsonContent="$(gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/$OWNER/$REPO/pulls/$PULL_NUMBER/files)"
+          echo "JSON_CONTENT="$jsonContent >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+          PULL_NUMBER: ${{ github.event.pull_request.number }}
+      - name: Generate review comment
+        uses: actions/github-script@v6
+        env:
+          DATA: ${{steps.listFiles.outputs.JSON_CONTENT}}
+        with:
+          script: |
+            const script = require('./.github/workflows/scripts/reports-to-comments.js')
+            script({github, context})
+      - name: Create comment to GitHub Code Scanning results
+        uses: actions/github-script@v6
+        env:
+          URL: ${{ github.server_url }}/${{ github.repository }}
+        with:
+          script: |
+            const script = require('./.github/workflows/scripts/codeql-comment.js');
+            script({github, context});
