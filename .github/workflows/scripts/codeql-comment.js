@@ -8,8 +8,7 @@ function manageComments(github, context) {
       fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8')
     )
     const prNum = ev.pull_request.number
-    console.log(prNum)
-    url = github.repositoryUrl +
+    url = process.env.URL +
         "/security/code-scanning?query=pr%3A"+
         prNum +
         "+tool%3AFormalm+is%3Aopen"

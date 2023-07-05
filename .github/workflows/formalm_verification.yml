@@ -98,6 +98,8 @@ jobs:
             script({github, context})
       - name: Create comment to GitHub Code Scanning results
         uses: actions/github-script@v6
+        env:
+          URL: ${{ github.server_url }}/${{ github.repository }}
         with:
           script: |
             const script = require('./.github/workflows/scripts/codeql-comment.js');

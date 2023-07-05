@@ -41,8 +41,6 @@ function addComments(github, context, modifiedFiles) {
               line: endLine
             };
             suggestions.push(suggestion);
-        } else {
-            console.log(`File ${targetPath} out of bounds or not present in diff`)
         }
       } else {
         console.log(`Unexpected file ${filename}`);
