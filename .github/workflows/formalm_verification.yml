@@ -78,6 +78,8 @@ jobs:
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           #category: my-analysis-tool
+      - name: Install GH CLI
+        uses: dev-hanz-ops/install-gh-cli-action
       - name: List files
         id: listFiles
         run: |
