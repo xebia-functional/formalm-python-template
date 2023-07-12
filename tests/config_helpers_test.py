@@ -1,5 +1,5 @@
 import os
-from src.configHelpers import readConfig
+from src.configHelpers import *
 
 
 def test_read_config():
