@@ -8,7 +8,7 @@ def test_readConfig():
         f.write('[{"name": "config1"}, {"name": "config2"}]')
 
     # Test reading the configuration file
-    result = readConfig("test_config.json")
+    result = readConfig("test_config.json", toClass=False)
 
     # Verify the result
     assert result == [{'name': 'config1'}, {'name': 'config2'}]
