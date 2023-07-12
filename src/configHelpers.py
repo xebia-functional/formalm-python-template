@@ -15,8 +15,8 @@ class InstrumentEncoder(JSONEncoder):
 def instrumentDecoder(instrumentDict):
     return namedtuple('X', instrumentDict.keys())(*instrumentDict.values())
 
-def readConfig(toClass = True):
-    with open("application.conf", 'r') as configFile:
+def readConfig(path, toClass = True):
+    with open(path, 'r') as configFile:
         if toClass:
             return json.load(configFile, object_hook=instrumentDecoder)
         else:
