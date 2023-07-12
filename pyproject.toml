@@ -10,6 +10,7 @@ python = "~3.10.0"
 pytest = "^7.3.1"
 dropbox = "^11.36.0"
 flake8 = "^6.0.0"
+numpy = "^1.25.0"
 
 [build-system]
 requires = ["poetry-core"]
