@@ -1,10 +1,5 @@
 from unittest import result
 
-from os import path
-
-def loadPaths(files):
-    for path in files:
-        print(path)
 
 def generateBlock(restrictLevel, name, url):
     link = f"""href="{url}" """ if url != "" else ""
