@@ -1,7 +1,7 @@
 import json
 
-def readConfig():
-    with open("application.conf", 'r') as configFile:
+def readConfig(path):
+    with open(path, 'r') as configFile:
         return json.load(configFile)
 
 def getSearchElements(config):

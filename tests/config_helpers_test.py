@@ -1,13 +1,14 @@
 import os
 from src.configHelpers import readConfig
 
+
 def test_readConfig():
     # Create a temporary configuration file
     with open('test_config.json', 'w') as f:
         f.write('[{"name": "config1"}, {"name": "config2"}]')
 
     # Test reading the configuration file
-    result = readConfig()
+    result = readConfig("test_config.json")
 
     # Verify the result
     assert result == [{'name': 'config1'}, {'name': 'config2'}]
